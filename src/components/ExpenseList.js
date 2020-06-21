@@ -6,7 +6,7 @@ import ExpenseListItem from './ExpenseListItem'
 
 const ExpenseList = (props) => (
     <div>
-        <h1>Expense List</h1>
+        <h3>Expense List</h3>
         {props.expenses.map((expense) => {
             return <ExpenseListItem key={expense.id} {...expense}/>
         })}
