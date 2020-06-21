@@ -4,6 +4,7 @@ import selectExpenses from './../selectors/expenses'
 
 import ExpenseListItem from './ExpenseListItem'
 
+
 const ExpenseList = (props) => (
     <div>
         <h3>Expense List</h3>
