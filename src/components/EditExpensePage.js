@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import ExpenseForm from './ExpenseForm'
-import { editExpense, removeExpense } from './../actions/expenses'
+import { startEditExpense, startRemoveExpense } from './../actions/expenses'
 
 
 const EditExpensePage = (props) => {
@@ -13,12 +13,12 @@ const EditExpensePage = (props) => {
             <ExpenseForm 
                 expense={props.expense}
                 onSubmit={(expense) => {
-                    props.dispatch(editExpense(id, expense))
+                    props.dispatch(startEditExpense(id, expense))
                     props.history.push('/')
                 }}
             />
             <button onClick={() => {
-                props.dispatch(removeExpense({id}))
+                props.dispatch(startRemoveExpense({id}))
                 props.history.push('/')
             }}>Remove</button>
         </div>
