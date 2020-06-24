@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 // COMPONENT IMPORTS
 import AppRouter from './routers/AppRouter'
 
+// ACTIONS
+import { startSetExpenses } from './actions/expenses'
 // ReDUX STORE
 import configureStore from './store/configureStore'
 
@@ -27,9 +29,17 @@ const jsx = (
   </Provider>
   
 )
-
 ReactDOM.render(
-  jsx,
+  <p>Loading...</p>,
   document.getElementById('root')
 );
+
+store.dispatch(startSetExpenses()).then(() => {
+  ReactDOM.render(
+    jsx,
+    document.getElementById('root')
+  );
+})
+
+
 

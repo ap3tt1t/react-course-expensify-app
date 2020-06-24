@@ -22,17 +22,11 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
                     return expense
                 }
             })
+        case 'SET_EXPENSES':
+            return action.expenses
         default:
             return state
     }
 }   
-
-// Filters reducer:
-const filtersReducerDefaultState = {
-    text: '',
-    sortBy: 'date',
-    startDate: undefined,
-    endDate: undefined
-}
 
 export default expensesReducer
