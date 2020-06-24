@@ -8,9 +8,10 @@ import AppRouter from './routers/AppRouter'
 
 // ReDUX STORE
 import configureStore from './store/configureStore'
-import { addExpense } from './actions/expenses'
-import { setTextFilter } from './actions/filters'
-import getVisibleExpenses from './selectors/expenses'
+
+
+// FIREBASE
+import './firebase/firebase'
 
 
 // CSS / SCSS IMPORTS
