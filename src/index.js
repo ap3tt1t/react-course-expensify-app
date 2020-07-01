@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 
 // COMPONENT IMPORTS
-import AppRouter from './routers/AppRouter'
+import AppRouter, { history } from './routers/AppRouter'
 
 // ACTIONS
 import { startSetExpenses } from './actions/expenses'
@@ -20,18 +20,12 @@ import { firebase } from './firebase/firebase'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 
-import { createBrowserHistory } from "history";
-import { Router} from 'react-router-dom'
-
-const history = createBrowserHistory();
 
 const store = configureStore()
 
 const jsx = (
   <Provider store={store}>
-    <Router history={history}>
       <AppRouter />
-    </Router>
   </Provider>
   
 )
@@ -52,7 +46,7 @@ firebase.auth().onAuthStateChanged((user) => {
     console.log('Logged in')
   } else {
     console.log('Logged out')
-    //history.push('/')
+    history.push('/')
   }
 })
 
