@@ -52,7 +52,7 @@ firebase.auth().onAuthStateChanged((user) => {
     console.log('Logged in')
   } else {
     console.log('Logged out')
-    history.push('/')
+    //history.push('/')
   }
 })
 
