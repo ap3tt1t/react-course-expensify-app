@@ -8,6 +8,7 @@ import AppRouter, { history } from './routers/AppRouter'
 
 // ACTIONS
 import { startSetExpenses } from './actions/expenses'
+import { login, logout } from './actions/auth'
 // ReDUX STORE
 import configureStore from './store/configureStore'
 
@@ -29,23 +30,33 @@ const jsx = (
   </Provider>
   
 )
-ReactDOM.render(
-  <p>Loading...</p>,
-  document.getElementById('root')
-);
 
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(
-    jsx,
-    document.getElementById('root')
-  );
-})
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(jsx,document.getElementById('root'));
+    hasRendered = true;
+  }
+}
+
+ReactDOM.render(<p>Loading...</p>,document.getElementById('root'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log('Logged in')
+    console.log('Logged In')
+    store.dispatch(login(user.uid))
+    store.dispatch(startSetExpenses()).then(() => {
+      renderApp()
+      if (history.location.pathname === '/') {
+        console.log('Redirecting to dashboard')
+        history.push('/dashboard')
+      }
+    })
   } else {
-    console.log('Logged out')
+    console.log('Logged Out')
+    store.dispatch(logout())
+    renderApp()
+    console.log('Redirecting to /')
     history.push('/')
   }
 })
