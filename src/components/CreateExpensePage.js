@@ -5,15 +5,21 @@ import ExpenseForm from './ExpenseForm'
 import { startAddExpense } from './../actions/expenses'
 
 const CreateExpensePage = (props) => (
-<div>
-    <h2>Create a new Expense</h2>
-    <ExpenseForm 
-        onSubmit={(expense) => {
-            props.dispatch(startAddExpense(expense))
-            props.history.push('/')
-        }}
-    />
-</div>
+    <div>
+        <div className='page-header'>
+            <div className='container'>
+                <h1 className='page-header__title'>Add Expense</h1>
+            </div>
+        </div>
+        <div className='container'>
+            <ExpenseForm 
+                onSubmit={(expense) => {
+                    props.dispatch(startAddExpense(expense))
+                    props.history.push('/')
+                }}
+            />
+        </div>
+    </div>
 )
 
 export default connect()(CreateExpensePage)
